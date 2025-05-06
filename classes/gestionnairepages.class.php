@@ -15,8 +15,8 @@ class GestionnairePages {
 
         if (isset($_GET["id"])) {
             $this->id_page_actuelle = $_GET["id"];
-        } else { // Sinon (cas par défaut - A OPTIMISER ! - par exemple fournir une page 404)
-            $this->id_page_actuelle = 1;
+        } else { // Sinon (cas par défaut : on considère qu'en l'absence d'id, on prend la première page de la liste)
+            $this->id_page_actuelle = $this->pages[0]->getID(); // On prend la première page de la liste
         }
 
         // + id_page_actelle 
@@ -32,7 +32,7 @@ class GestionnairePages {
     public function listePages() {
         
         $bdd = new BDD();
-        $donnees_pages = $bdd->recuperer_pages();
+        $donnees_pages = $bdd->requete ("SELECT * FROM `pages`");
 
         $pages = [];
         foreach ($donnees_pages as $la_donnée){
@@ -43,6 +43,26 @@ class GestionnairePages {
         return $pages;
 
         
+    }
+
+    function obtenir_page_selon_id($id_a_chercher) {
+    
+        foreach($this->pages as $la_page) {
+            if ($la_page->getID() == $id_a_chercher) {
+                return $la_page; 
+            }
+        }
+    
+        // Cas par défaut (aucune correspondance trouvée)
+        return false;
+    
+        /* Permet des tests, comme : if (obtenir_page_selon_id(999)) { 
+        si ce tests est valide, c'est que le résultat est , et la page existe
+    }*/
+    }
+
+    public function obtenir_page_par_default() {
+        return $this->pages[0]; // On prend la première page de la liste
     }
 
     public function obtenir_page_actuelle(){
@@ -80,16 +100,4 @@ class GestionnairePages {
         }
     }
 
-    function obtenir_page_selon_id($id_a_chercher) {
-    
-        foreach($this->pages as $la_page) {
-            if ($la_page->getID() == $id_a_chercher) {
-                return $la_page; 
-            }
-        }
-    
-        // Cas par défaut (A OPTIMISER - par exemple fournir une page 404)
-        return $this->pages[0];
-    
-    }
 }
