@@ -10,7 +10,11 @@ require("classes/gestionnairepages.class.php");
 // On demande au gestionnaire toutes les informations concernant la page a afficher
 $gestionnaire = new GestionnairePages();
 
-$page_a_afficher = $gestionnaire->obtenir_page_actuelle();
+if ($gestionnaire->obtenir_page_actuelle()) {
+    $page_a_afficher = $gestionnaire->obtenir_page_actuelle();
+} else {
+    $page_a_afficher = $gestionnaire->obtenir_page_par_default(); // On prend la première page de la liste
+}
 
 
 
@@ -43,7 +47,7 @@ $page_a_afficher = $gestionnaire->obtenir_page_actuelle();
             <div style="display: flex; justify-content: end; width: 100%">
                 <a href="admin" class="connexion"><button>Sign in</button></a>
             </div>
-                <h1><?php echo TITRE_DU_SITE; ?></h1>
+            <h1><?php echo TITRE_DU_SITE; ?></h1>
 
             <nav>
 

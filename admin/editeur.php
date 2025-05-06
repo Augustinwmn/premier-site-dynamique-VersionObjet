@@ -27,7 +27,13 @@ if (!isset($_GET["id"]) || $_GET["id"] == "") {
     require("../classes/gestionnairepages.class.php");
 
     $gestionnaire = new GestionnairePages();
-    $page_a_afficher = $gestionnaire->obtenir_page_actuelle();
+
+    if ($gestionnaire->obtenir_page_actuelle()) {
+        $page_a_afficher = $gestionnaire->obtenir_page_actuelle();
+    } else {
+        header("Location: index.php"); // On redirige vers la page d'accueil si l'id n'est pas valide
+        exit(); // On arrête le script pour éviter d'afficher la page d'édition
+    }
 
     $action_titre = "Modifier";
     $script_traitement = "traitement_modif_page.php?id=" . $_GET["id"];
@@ -43,6 +49,7 @@ if (!isset($_GET["id"]) || $_GET["id"] == "") {
     <div style='width: 50%; margin: 5 auto;'>
         <a href='../index.php'><button>Voir la page</button></a>
     </div>";
+
 }
 
 //TO DO : Gérer cas comme 'id=abd' ou 'id=333333333333333'
@@ -62,7 +69,7 @@ if (!isset($_GET["id"]) || $_GET["id"] == "") {
 <body>
 
     <h1>Éditeur de page</h1>
-    <h2>Vous êtes connecter en tant que <?php echo $admin->getNom(); ?> une page</h2>
+    <h2>Vous êtes connecter en tant que <?php echo $admin->getNom(); ?></h2>
 
     <div style="width: 50%; margin: 0 auto;">
         <a href="index.php"><button>Revenir à la page précédente</button></a>

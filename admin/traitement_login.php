@@ -58,8 +58,6 @@ foreach($authentification as $utlisateur){
 
 }
 
-
-
 header("location: index.php");
 
 ?>
