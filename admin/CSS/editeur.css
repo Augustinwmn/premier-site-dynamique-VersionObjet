@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #D3D3D3;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    flex-direction: column;
+    text-align: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px 20px;
+}
+
+h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+h2 {
+    font-weight: normal;
+    color: #555;
+}
+
+a button {
+    background-color: fuchsia;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+a button:hover {
+    background-color: rgb(200, 0, 200);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form input[type="text"],
+form textarea,
+form input[type="submit"], 
+form input[type="button"]{
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+form input[type="text"]:focus,
+form textarea:focus, 
+form input[type="button"]:focus {
+    border-color: fuchsia;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 0, 255, 0.3);
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 45px;
+    height: 180px;
+    max-height: 500px;
+}
+
+form input[type="submit"], 
+form input[type="button"] {
+    background-color: fuchsia;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: rgb(200, 0, 200);
+}
+
+hr {
+    margin: 30px 0;
+    border: 1px solid #ff7ff7;
+}
