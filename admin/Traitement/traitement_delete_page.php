@@ -2,7 +2,7 @@
 
 // Note : Vérifier qu'on a les droits d'accès admin
 
-require("../config.php");
+require("../../config.php");
 
 if (isset($_GET["id"]) && isset($_POST["delete"]) && trim($_GET["id"])  != "") {
 
@@ -19,5 +19,5 @@ if (isset($_GET["id"]) && isset($_POST["delete"]) && trim($_GET["id"])  != "") {
     $preparation->execute([$id]);// Le tableau en paramètre contient, dans le bon ordre des valeurs qui remplaçeront les "?" dans notre schéma de requête
 }
 
-header("Location: index.php");
+header("Location: ../index.php");
 ?>

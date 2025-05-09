@@ -12,7 +12,7 @@ if (!isset($_GET["id"]) || $_GET["id"] == "") {
     // Mode ajout
 
     $action_titre = "Ajouter";
-    $script_traitement = "traitement_ajout_page.php";
+    $script_traitement = "Traitement/traitement_ajout_page.php";
     $valeur_champ_titre = ""; // On laisse le champ vide
     $valeur_champ_contenu = ""; // On laisse le champ vide
     $form_suppression = ""; // On ne crée pas de formulaire de suppression
@@ -36,12 +36,12 @@ if (!isset($_GET["id"]) || $_GET["id"] == "") {
     }
 
     $action_titre = "Modifier";
-    $script_traitement = "traitement_modif_page.php?id=" . $_GET["id"];
+    $script_traitement = "Traitement/traitement_modif_page.php?id=" . $_GET["id"];
     $valeur_champ_titre = $page_a_afficher->getTitre();
     $valeur_champ_contenu = $page_a_afficher->getContenu();
 
     $form_suppression = "
-    <form name='delete_form' action='traitement_delete_page.php?id=" . $_GET["id"] . "' method='POST'>
+    <form name='delete_form' action='Traitement/traitement_delete_page.php?id=" . $_GET["id"] . "' method='POST'>
         <input type='hidden' name='delete'>
         <input id='delete_button' type='button' value='Supprimer la page'>
     </form>";

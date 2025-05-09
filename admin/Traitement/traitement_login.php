@@ -1,7 +1,7 @@
 <?php
 
-require("../config.php");
-require("../classes/utilisateur.class.php");
+require("../../config.php");
+require(".././classes/utilisateur.class.php");
 
 $id = $_POST["identifiant"];
 $mdp = $_POST["mdp"];
@@ -58,6 +58,6 @@ foreach($authentification as $utlisateur){
 
 }
 
-header("location: index.php");
+header("location: ../index.php");
 
 ?>

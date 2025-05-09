@@ -2,7 +2,7 @@
 
 // Note : Vérifier qu'on a les droits d'accès admin
 
-require("../config.php");
+require("../../config.php");
 
 // isset permet de vérifier si une variable existe et n'est pas NULL
 // trim permet de supprimer les espaces en début et fin de chaîne
@@ -24,5 +24,5 @@ if (isset($_POST["title"]) && isset($_POST["content"]) && trim($_POST["title"]) 
 }else{
 }
 
-header("Location: index.php");
+header("Location: ../index.php");
 ?>

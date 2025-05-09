@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <form action="traitement_login.php" method="POST">
+    <form action="Traitement/traitement_login.php" method="POST">
 
         <input type="text" placeholder="identifiant" name="identifiant">
 

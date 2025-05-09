@@ -1,5 +1,6 @@
 <?php
-class GestionnairePages {
+class GestionnairePages
+{
 
     /*
     OK - Lister toutes les pages existantes
@@ -10,7 +11,8 @@ class GestionnairePages {
     private $pages;
     private $id_page_actuelle;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->listePages(); // Maj automatique de la propriété $this->pages
 
         if (isset($_GET["id"])) {
@@ -23,55 +25,61 @@ class GestionnairePages {
 
     }
 
-    public function creerpages($nouvel_id, $nouveau_titre, $nouveau_contenu) {
-        $page = new Page($nouvel_id, $nouveau_titre ,$nouveau_contenu);
+    public function creerpages($nouvel_id, $nouveau_titre, $nouveau_contenu)
+    {
+        $page = new Page($nouvel_id, $nouveau_titre, $nouveau_contenu);
 
         return $page;
     }
 
-    public function listePages() {
-        
+    public function listePages()
+    {
+
         $bdd = new BDD();
-        $donnees_pages = $bdd->requete ("SELECT * FROM `pages`");
+        $donnees_pages = $bdd->requete("SELECT * FROM `pages`");
 
         $pages = [];
-        foreach ($donnees_pages as $la_donnée){
+        foreach ($donnees_pages as $la_donnée) {
             // $pages[] = $this->creerpages($la_donnée["id"], $la_donnée["titre"], $la_donnée["contenu"]);
             array_push($pages, $this->creerpages($la_donnée["id"], $la_donnée["titre"], $la_donnée["contenu"]));
         }
         $this->pages = $pages;
         return $pages;
 
-        
+
     }
 
-    function obtenir_page_selon_id($id_a_chercher) {
-    
-        foreach($this->pages as $la_page) {
+    function obtenir_page_selon_id($id_a_chercher)
+    {
+
+        foreach ($this->pages as $la_page) {
             if ($la_page->getID() == $id_a_chercher) {
-                return $la_page; 
+                return $la_page;
             }
         }
-    
+
         // Cas par défaut (aucune correspondance trouvée)
         return false;
-    
+
         /* Permet des tests, comme : if (obtenir_page_selon_id(999)) { 
         si ce tests est valide, c'est que le résultat est , et la page existe
     }*/
     }
 
-    public function obtenir_page_par_default() {
+    public function obtenir_page_par_default()
+    {
         return $this->pages[0]; // On prend la première page de la liste
     }
 
-    public function obtenir_page_actuelle(){
+    public function obtenir_page_actuelle()
+    {
         return $this->obtenir_page_selon_id($this->id_page_actuelle);
     }
 
-    public function afficher_menu (){
-        
-        foreach($this->pages as $la_page) {
+    public function afficher_menu()
+    {
+
+        foreach ($this->pages as $la_page) {
 
             if ($la_page->getID() == $this->id_page_actuelle) {
                 // Le lien à créer concerne la page déjà affichée
@@ -85,18 +93,16 @@ class GestionnairePages {
         }
     }
 
-    public function afficher_liste_admin (){
-        
-        foreach($this->pages as $la_page) {
+    public function afficher_liste_admin()
+    {
 
-            echo "<li><a href='editeur.php?id=" . $la_page->getID() . "'>" . $la_page->getTitre() . "</a> 
-             <a href='traitement_delete_page.php?id=" . $la_page->getID() . "'><button style='padding: 3px; background-color: red' id='delete_button'>Supprimer la page</button></a>
-            </li>";
-// <form name='delete_form' action='traitement_delete_page.php?id=" . <?php $_GET['id']; ? . "' method='POST'>
-//                 <input type='hidden' name='delete'>
-//                 <input id='delete_button' type='button' value='Supprimer la page'>
-//             </form>
+        foreach ($this->pages as $la_page) {
 
+            echo "<li><a href='editeur.php?id=" . $la_page->getID() . "'>" . $la_page->getTitre() ."</a></li>
+                <form name='delete_form' action='Traitement/traitement_delete_page.php?id=" . $la_page->getID() . "' method='POST'>
+                    <input type='hidden' name='delete'>
+                    <input id='delete_button' type='button' value='Supprimer la page'>
+                </form>";
         }
     }
 

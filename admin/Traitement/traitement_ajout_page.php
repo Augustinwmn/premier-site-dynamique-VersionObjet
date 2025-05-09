@@ -2,7 +2,7 @@
 
 // Note : Vérifier qu'on a les droits d'accès admin
 
-require("../config.php");
+require("../../config.php");
 
 
 if (isset($_POST["title"]) && isset($_POST["content"]) && trim($_POST["title"]) != "" && trim($_POST["content"]) != "") {
@@ -21,10 +21,10 @@ if (isset($_POST["title"]) && isset($_POST["content"]) && trim($_POST["title"]) 
         $preparation->execute([$title, $content]);// Le tableau en paramètre contient, dans le bon ordre des valeurs qui remplaçeront les "?" dans notre schéma de requête
 
     */
-    require("../classes/bdd.class.php");
+    require("../../classes/bdd.class.php");
     $bdd = new BDD();
     $bdd->requete("INSERT INTO `pages` (`id`, `titre`, `contenu`) VALUES (NULL, ?, ?)", [$title, $content]);
 }
 
-header("Location: index.php");
+header("Location: ../index.php");
 ?>
