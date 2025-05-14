@@ -36,15 +36,14 @@ $admin = $gestion_u->getUtilisateurActuel(); // Récupération de l'utilisateur 
 
     <h1>Bienvenue en tant qu'admin !</h1>
     <h2>Vous êtes connecter en tant que <?php echo $admin->getNom(); ?></h2>
-    <!-- <a href="login.php"><button>Se connecter</button></a> -->
+
     <a href="logout.php"><button>Se déconnecter</button></a>
-    <a href="../index.php"><button>Exit</button></a>
+    <a href="../index.php"><button>Voir le site</button></a>
 
     <hr />
 
-    <h2>Les pages du site : </h2>
-    <ul>
-        <?php $gestion_p->afficher_liste_admin() ?>
-    </ul>
-    <a href="editeur.php"><button>Ajouter une page</button></a>
+    <h2>Gestion du contenu : </h2>
+
+    <a href="list_pages.php"><button>Pages</button></a>
+    <a href="list_videos.php"><button>Vidéos</button></a>
 </body>

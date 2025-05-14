@@ -4,22 +4,22 @@ require("config.php");
 
 require("classes/bdd.class.php");
 require("classes/page.class.php");
+require("classes/video.class.php");
 require("classes/gestionnairepages.class.php");
+require("classes/gestionnairevideos.class.php");
 
+$gestionnaire_p = new GestionnairePages();
 
-// On demande au gestionnaire toutes les informations concernant la page a afficher
-$gestionnaire = new GestionnairePages();
-
-if ($gestionnaire->obtenir_page_actuelle()) {
-    $page_a_afficher = $gestionnaire->obtenir_page_actuelle();
+if ($gestionnaire_p->obtenir_page_actuelle()) {
+    $page_a_afficher = $gestionnaire_p->obtenir_page_actuelle();
 } else {
-    $page_a_afficher = $gestionnaire->obtenir_page_par_default(); // On prend la première page de la liste
+    $page_a_afficher = $gestionnaire_p->obtenir_page_par_default(); 
 }
 
+$gestionnaire_v = new GestionnaireVideos();
 
+$videos = $gestionnaire_v->listevideos();
 
-
-// on pourrait aussi utiliser include() à la place de require() - dans ce cas, si le fichier à inclure n'est pas trouvé, le reste de la page tente quand même de s'afficher / s'exécuter
 ?>
 
 <!DOCTYPE html>
@@ -44,16 +44,13 @@ if ($gestionnaire->obtenir_page_actuelle()) {
     <body>
 
         <header>
-            <div style="display: flex; justify-content: end; width: 100%">
-                <a href="admin" class="connexion"><button>Sign in</button></a>
-            </div>
             <h1><?php echo TITRE_DU_SITE; ?></h1>
 
             <nav>
 
                 <ul>
                     <?php
-                    $gestionnaire->afficher_menu()
+                    $gestionnaire_p->afficher_menu()
                         ?>
                 </ul>
             </nav>
@@ -62,12 +59,22 @@ if ($gestionnaire->obtenir_page_actuelle()) {
         <main>
 
             <section>
-
+                <h2>Playlist</h2>
                 <div class="centrage">
 
-                    <h2><?php echo $page_a_afficher->getTitre(); ?></h2>
+                    <?php foreach ($videos as $video): ?>
+                        <div class="video-fiche">
+                            <h3><?= htmlspecialchars($video->getTitre()) ?></h3>
+                            <p><?= htmlspecialchars($video->getDescription()) ?></p>
 
-                    <?php echo nl2br($page_a_afficher->getContenu()); ?>
+                            <iframe width="560" height="315"
+                                src="https://www.youtube-nocookie.com/embed/<?= htmlspecialchars($video->getUrl()) ?>"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                            </iframe>
+                        </div>
+                    <?php endforeach; ?>
 
                 </div>
 
@@ -78,8 +85,7 @@ if ($gestionnaire->obtenir_page_actuelle()) {
         <footer>
 
             <p>Ceci est un pied de page</p>
-            <!-- Ne change pas selon la page, mais pourrait être intéressant à administrer -->
-
+            
         </footer>
 
     </body>

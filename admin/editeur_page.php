@@ -3,20 +3,20 @@ require("../classes/utilisateur.class.php");
 require("../classes/gestionnaireUtilisateur.class.php");
 
 $gestion_u = new GestionnaireUtilisateur();
-$gestion_u->verification_admin();// Fonction définie dans le fichier gestionnaireUtilisateur.class.php
+$gestion_u->verification_admin();
 
-$admin = $gestion_u->getUtilisateurActuel(); // Récupération de l'utilisateur actuel
+$admin = $gestion_u->getUtilisateurActuel();
 
 
 if (!isset($_GET["id"]) || $_GET["id"] == "") {
-    // Mode ajout
 
+    // Mode ajout
     $action_titre = "Ajouter";
-    $script_traitement = "traitement_ajout_page.php";
-    $valeur_champ_titre = ""; // On laisse le champ vide
-    $valeur_champ_contenu = ""; // On laisse le champ vide
-    $form_suppression = ""; // On ne crée pas de formulaire de suppression
-    $voir_page = ""; // On ne crée pas de lien vers la page à afficher
+    $script_traitement = "traitement/traitement_ajout_page.php";
+    $valeur_champ_titre = "";
+    $valeur_champ_contenu = "";
+    $form_suppression = "";
+    $voir_page = ""; 
 
 } else {
     // Mode édition
@@ -31,17 +31,16 @@ if (!isset($_GET["id"]) || $_GET["id"] == "") {
     if ($gestionnaire->obtenir_page_actuelle()) {
         $page_a_afficher = $gestionnaire->obtenir_page_actuelle();
     } else {
-        header("Location: index.php"); // On redirige vers la page d'accueil si l'id n'est pas valide
-        exit(); // On arrête le script pour éviter d'afficher la page d'édition
+        header("Location: index.php");
+        exit();
     }
 
     $action_titre = "Modifier";
-    $script_traitement = "traitement_modif_page.php?id=" . $_GET["id"];
+    $script_traitement = "traitement/traitement_modif_page.php?id=" . $_GET["id"];
     $valeur_champ_titre = $page_a_afficher->getTitre();
-    $valeur_champ_contenu = $page_a_afficher->getContenu();
 
     $form_suppression = "
-    <form name='delete_form' action='traitement_delete_page.php?id=" . $_GET["id"] . "' method='POST'>
+    <form name='delete_form' action='traitement/traitement_delete_page.php?id=" . $_GET["id"] . "' method='POST'>
         <input type='hidden' name='delete'>
         <input id='delete_button' type='button' value='Supprimer la page'>
     </form>";
@@ -51,9 +50,6 @@ if (!isset($_GET["id"]) || $_GET["id"] == "") {
     </div>";
 
 }
-
-//TO DO : Gérer cas comme 'id=abd' ou 'id=333333333333333'
-// Le getionnaire de page nous fournit la première page si l'id n'est pas valide
 
 ?>
 
@@ -72,21 +68,19 @@ if (!isset($_GET["id"]) || $_GET["id"] == "") {
     <h2>Vous êtes connecter en tant que <?php echo $admin->getNom(); ?></h2>
 
     <div style="width: 50%; margin: 0 auto;">
-        <a href="index.php"><button>Revenir à la page précédente</button></a>
+        <a href="list_pages.php"><button>Revenir à la page précédente</button></a>
     </div>
 
     <?= $voir_page ?>
 
     <hr />
 
-    <h3><?= $action_titre ?> une page : </h3>
+    <h3><?= $action_titre ?> le titre de la page : </h3>
 
     <div style="width: 50%; margin: 0 auto;">
         <form action="<?= $script_traitement ?>" method="POST">
 
             <input type="text" placeholder="Title page" name="title" value="<?= $valeur_champ_titre ?>" required>
-
-            <textarea name="content" placeholder="Page content" required><?= $valeur_champ_contenu ?></textarea>
 
             <input type="submit" value="<?= $action_titre ?>">
 

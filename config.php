@@ -1,6 +1,6 @@
 <?php
 
-    define('TITRE_DU_SITE', '(Re)découverte HTML et CSS');
+    define('TITRE_DU_SITE', 'Grrr\'in');
 
     define('SERVERNAME', 'localhost');
 
@@ -8,4 +8,4 @@
 
     define('PASSWORD', '');
 
-    define('DBNAME', 'premier-site-dynamique');
+    define('DBNAME', 'ecf_back-end');

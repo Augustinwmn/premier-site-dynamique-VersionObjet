@@ -1,20 +1,5 @@
-/*
-
-MEMO - Palette (https://coolors.co/bfb5af-ece2d0-d5b9b2-a26769-582c4d) :
-
-Silver #BFB5AF
-Bone #ECE2D0
-Pale dogwood #D5B9B2
-Rose taupe #A26769
-Violet #582C4D
-
-*/
-
-/************************/
-
 body {
-    margin:0; /* Remise à zero des marges données par le navigateur (utile pour obtenir une réelle pleine largeur, comme ici le header qui pourra être collé aux bords de la fenêtre */
-    font-family: "Roboto", sans-serif; /* Possible grâce aux liens vers Google Fonts */
+    margin:0;font-family: "Roboto", sans-serif;
     font-weight: 300;
     background-color:#ECE2D0;
     color:#A26769;
@@ -28,19 +13,15 @@ header {
     padding-bottom:100px;
 
     display:flex;
-    flex-direction:column; /* Axe principal pour flex : vertical */
-    justify-content:flex-end; /* Sur l'axe principal on accumule tout à la fin (donc en bas) */
-    align-items:center; /* Sur l'axe secondaire on centre tout */
-
-    background-color:#582C4D;
-
-    background-image:url(images/image-code.jpg);
-    background-size:cover; /* L'image de fond couvrira en une fois tout le header (au lieu de devoir se répéter si plus petite) et sa taille d'affichage sera ajustée au mieux (au lieu de trop être tronquée si plus grande)*/
-    background-position:center; /* Si image de fond tronquée, on en montre prioritairement le milieu (sur les 2 axes) */
-
-    background-blend-mode:darken; /* Mode de fusion entre l'image et la couleur de fond */
-
-    text-transform:uppercase; /* Affichera tous les contenus texte en majuscules ( / ! \ NOTE À MOI-MÊME : penser à vous expliquer pourquoi ne pas simplement écrire les contenus en majuscules) */
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items:center;
+    background-color:#5252528a;
+    background-image:url(images/depositphotos_23944349-stock-photo-field-of-spring-grass-and.jpg);
+    background-size:cover;
+    background-position:center;
+    background-blend-mode:darken;
+    text-transform:uppercase;
 }
 
 a.connexion button{
@@ -54,7 +35,7 @@ a.connexion button{
     text-decoration: none;
 }
 
-header nav { /* Tout élément nav se trouvant dans un élément header */
+header nav {
     width:100%;
 }
 
@@ -85,17 +66,11 @@ nav a {
 }
 
 nav a:not(.actuel):hover {
-/* Traduction complète de ce sélecteur :
-- nav a : sélectionne tout élément a se trouvant dans un élément nav
-- :not(.actuel) : mais à condition que cet élément a ne porte pas la classe "actuel"
-- :hover : et à n'appliquer que lorsque cet élément a est survolé par la souris
-*/
     color:#A26769;
     font-weight:500;
 }
 
-nav a.actuel { /* Utilisation : on donne cette classe "actuel" à l'élément de notre menu correspondant à la page sur laquelle on se trouve, pour le différencier visuellement */
-    opacity:0.5;
+nav a.actuel {
     font-weight:500;
     font-size:25px;
 }
@@ -108,11 +83,8 @@ section {
     border-bottom:1px dotted #A26769;
 }
 
-.centrage { /* Utilisation : contraindre les contenus dans une colonne à l'intérieur des sections (en donnant cette classe à des éléments div intermédiaires) */
-
+.centrage {
     max-width:800px;
-
-    /* Centrage automatique horizontal, sans display:flex */
     margin-left:auto;
     margin-right:auto;
 }
@@ -145,8 +117,6 @@ footer {
     padding:40px;
 }
 
-/*** Règles n'intervenant que sur les pages "Projets" et "Ressources" ***/
-
 ul.big {
     display:flex;
     flex-direction:column;
@@ -164,5 +134,5 @@ ul.big li:hover {
 }
 
 ul.big a {
-    color:inherit; /* Forcer l'héritage de la couleur de texte depuis l'élément parent (à préciser dans le cas d'un lien, auquel le navigateur donnera sinon une couleur par défaut qui annulera l'héritage que l'on constate habituellement sur la stylisation de texte) */
+    color:inherit;
 }

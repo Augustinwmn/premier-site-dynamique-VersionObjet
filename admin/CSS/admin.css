@@ -66,7 +66,7 @@ hr {
     border-top: 1px solid #ccc;
 }
 
-/* Lien simple (ex: Ajouter une page) */
+/* Lien */
 .container a.simple-link {
     color: fuchsia;
     font-weight: bold;

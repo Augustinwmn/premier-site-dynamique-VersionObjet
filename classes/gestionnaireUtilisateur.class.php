@@ -5,13 +5,12 @@ class GestionnaireUtilisateur{
 
     public function verification_admin (){
 
-            session_start(); // Instruction nécessaire avant toutes manipulation de $_SESSION
+            session_start();
         if ($_SESSION["admin"] != "ok") {
-            header("location: login.php"); // Redirection
-            exit(); // Interruption forcée de la suite du script
+            header("location: login.php");
+            exit();
         }else{
             $this->utilisateur_actuel = new Utilisateur($_SESSION["id_admin"], $_SESSION["nom_admin"]);
-            // var_dump($utilisateur_actuel);
         }
     }
 

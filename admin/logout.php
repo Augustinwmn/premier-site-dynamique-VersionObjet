@@ -1,10 +1,8 @@
 <?php
 
-// Bloc correspondant à une déconnexion manuelle
-
 session_start();
-session_unset(); // Vider le $_SESSION
-session_destroy() ; // Supprimer
+session_unset();
+session_destroy() ;
 header("location: ../index.php");
 
 ?>

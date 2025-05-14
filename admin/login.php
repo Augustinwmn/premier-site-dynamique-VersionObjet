@@ -8,15 +8,16 @@
 </head>
 <body>
 
-    <form action="traitement_login.php" method="POST">
+    <form action="traitement/traitement_login.php" method="POST">
 
         <input type="text" placeholder="identifiant" name="identifiant">
 
         <input type="password" placeholder="password" name="mdp">
 
         <input type="submit" value="Valider">
+        
+    <a href="../index.php"><button>Exit</button></a>
 
     </form>
-    <a href="../index.php"><button>Exit</button></a>
 </body>
 </html>
