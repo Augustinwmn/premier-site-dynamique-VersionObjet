@@ -1,0 +1,74 @@
+/* ======= GLOBAL ======= */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #D3D3D3;
+    margin: 0;
+    padding: 40px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* ======= TITRES ======= */
+h2 {
+    font-weight: normal;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* ======= LISTE DES VIDÉOS ======= */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+ul li {
+    background-color: white;
+    border-radius: 6px;
+    padding: 15px;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ======= BOUTONS ======= */
+a button,
+.button-link {
+    background-color: fuchsia;
+    color: white;
+    border: none;
+    width: 100%;
+    max-width: 300px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a button:hover,
+.button-link:hover {
+    background-color: rgb(200, 0, 200);
+}
+
+/* ======= LIENS TEXTE ======= */
+a:not(:has(button)) {
+    color: #333;
+    margin-top: 20px;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+a:not(:has(button)):hover {
+    text-decoration: underline;
+}

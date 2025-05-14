@@ -71,7 +71,7 @@ if (!isset($_GET["id"]) || $_GET["id"] == "") {
         <a href="list_pages.php"><button>Revenir à la page précédente</button></a>
     </div>
 
-    <?= $voir_page ?>
+    <!-- <?= $voir_page ?> -->
 
     <hr />
 
